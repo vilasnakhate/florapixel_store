@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #d9577b;
+      --dark: #33272c;
+      --light-pink: #fff1f4;
+      --cream: #fffaf7;
+      --green: #647b60;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--dark);
+      background: var(--cream);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* Announcement bar */
+    .announcement {
+      background: #713c50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 7%;
+      background: white;
+      border-bottom: 1px solid #f4e8e9;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--pink);
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    nav a {
+      font-size: 14px;
+      transition: color .2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--pink);
+    }
+
+    .cart-button {
+      border: 1px solid #ead6dc;
+      background: white;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 65px 7%;
+      background: linear-gradient(110deg, #fff0f3, #fce5e7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .hero-content {
+      max-width: 570px;
+    }
+
+    .eyebrow {
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1.15;
+      margin: 17px 0;
+    }
+
+    .hero p {
+      color: #786a70;
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 450px;
+    }
+
+    .hero-image {
+      width: 340px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 48% 48% 10px 10px;
+      box-shadow: 0 15px 40px #a45d6c22;
+    }
+
+    /* Main products */
+    .shop {
+      padding: 60px 7%;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      margin: 10px 0;
+    }
+
+    .section-heading p {
+      color: #897b80;
+      font-size: 14px;
+    }
+
+    /* Search and filters */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      max-width: 380px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 13px 17px;
+      border: 1px solid #eadde0;
+      border-radius: 8px;
+      outline: none;
+      background: white;
+    }
+
+    .search-box input:focus {
+      border-color: var(--pink);
+    }
+
+    .toolbar select {
+      padding: 13px;
+      border: 1px solid #eadde0;
+      border-radius: 8px;
+      background: white;
+      outline: none;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .category-btn {
+      padding: 10px 19px;
+      border: 1px solid #ebdce0;
+      border-radius: 30px;
+      background: white;
+      color: #66545b;
+      transition: .2s;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--pink);
+      border-color: var(--pink);
+      color: white;
+    }
+
+    .results {
+      font-size: 13px;
+      color: #87767c;
+      margin-bottom: 20px;
+    }
+
+    /* Product grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #f3e9eb;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px #55303d12;
+    }
+
+    .image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #f7e9eb;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: white;
+      color: var(--pink);
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .wishlist {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 35px;
+      height: 35px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      font-size: 20px;
+      color: #9a7b84;
+    }
+
+    .wishlist.active {
+      color: #e34568;
+    }
+
+    .product-info {
+      padding: 17px;
+    }
+
+    .product-category {
+      color: var(--green);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    .product-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      margin: 9px 0;
+    }
+
+    .description {
+      color: #8c7e83;
+      font-size: 12px;
+      line-height: 1.6;
+      min-height: 38px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--pink);
+    }
+
+    .add-cart {
+      background: var(--dark);
+      color: white;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      transition: background .2s;
+    }
+
+    .add-cart:hover {
+      background: var(--pink);
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 55px 15px;
+      color: #87767c;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      text-align: center;
+      padding: 55px 20px;
+      background: var(--light-pink);
+    }
+
+    .newsletter h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      color: #817077;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      max-width: 440px;
+      margin: auto;
+    }
+
+    .newsletter input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      border: 1px solid #ead8de;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .newsletter button {
+      background: var(--pink);
+      color: white;
+      border: none;
+      padding: 13px 18px;
+      border-radius: 6px;
+    }
+
+    /* Footer */
+    footer {
+      background: #33272c;
+      color: #f8eaf0;
+      padding: 35px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer .logo {
+      color: #f3a6bc;
+    }
+
+    footer p {
+      color: #d4c1c8;
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .product-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .product-image {
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 26px;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 45px 6%;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero p {
+        margin: auto;
+      }
+
+      .hero-image {
+        width: 100%;
+        max-width: 340px;
+        height: 260px;
+      }
+
+      .shop {
+        padding: 45px 5%;
+      }
+
+      .section-heading h2 {
+        font-size: 31px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
+
+      .product-image {
+        height: 175px;
+      }
+
+      .product-info {
+        padding: 12px;
+      }
+
+      .product-info h3 {
+        font-size: 16px;
+      }
+
+      .description {
+        font-size: 11px;
+      }
+
+      .product-bottom {
+        flex-wrap: wrap;
+      }
+
+      .price {
+        font-size: 16px;
+      }
+
+      .add-cart {
+        width: 100%;
+      }
+
+      .toolbar {
+        align-items: stretch;
+      }
+
+      .search-box {
+        max-width: 100%;
+      }
+
+      .toolbar select {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .categories {
+        gap: 7px;
+      }
+
+      .category-btn {
+        padding: 8px 13px;
+        font-size: 12px;
+      }
+
+      .newsletter h2 {
+        font-size: 27px;
+      }
+
+      footer {
+        text-align: center;
+        justify-content: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="announcement">
+    MAKE EVERY MOMENT BLOOM 🌸 &nbsp; | &nbsp; BEAUTIFUL FLOWERS, BEAUTIFUL MEMORIES
+  </div>
+
+  <header>
+    <a href="index.html" class="logo">FLORAPIXEL<span>.</span></a>
+
+    
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Flowers for every feeling</span>
+      <h1>Say It With<br>Beautiful Flowers.</h1>
+      <p>
+        From romantic roses to cheerful bouquets, discover flowers
+        that make every special moment unforgettable.
+      </p>
+    </div>
+
+    <img
+      class="hero-image"
+      src="images/Flowergirl07.jpg"
+      alt="Beautiful pink flower bouquet"
+    >
+  </section>
+
+  <main class="shop">
+    <div class="section-heading">
+      <span class="eyebrow">Our collection</span>
+      <h2>Shop Our Flowers</h2>
+      <p>Handpicked blooms to brighten someone's day.</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="search-box">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="🔍 Search flowers..."
+          aria-label="Search products"
+        >
+      </div>
+
+      <select id="sortSelect" aria-label="Sort products">
+        <option value="featured">Featured</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+
+    <div class="categories" id="categories">
+      <button class="category-btn active" data-category="All">All Flowers</button>
+      <button class="category-btn" data-category="Roses">Roses</button>
+      <button class="category-btn" data-category="Bouquets">Bouquets</button>
+      <button class="category-btn" data-category="Lilies">Lilies</button>
+      <button class="category-btn" data-category="Gifts">Flower Gifts</button>
+    </div>
+
+    <p class="results" id="resultCount"></p>
+
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+
+  <section class="newsletter" id="newsletter">
+    <h2>A Little Bloom in Your Inbox</h2>
+    <p>Discover fresh flowers, seasonal collections and special offers.</p>
+
+    <form id="newsletterForm">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <footer>
+    <a href="index.html" class="logo">FLORAPIXEL.</a>
+    <p>© <span id="year"></span> FLORAPIXEL. Made with love 🌷</p>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="#newsletter">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Classic White Roses",
+        category: "Roses",
+        price: 1999,
+        badge: "Bestseller",
+        description: "A timeless arrangement of romantic red roses.",
+        image: "images/Rose3.jpg"
+      },
+      {
+        id: 2,
+        name: " Blush Elegance Bouquet ",
+        category: "Bouquets",
+        price: 1299,
+        badge: "Popular",
+        description: " Blush Elegance Pink Rose Bouquet 💐💗.",
+        image: "images/Bouquet1.jpg"
+      },
+      {
+        id: 3,
+        name: " Pink Stargazer Lilies ",
+        category: "Lilies",
+        price: 1099,
+        badge: "Popular",
+        description: " Blushing Pink Lilies A Portrait of Nature's Elegance.",
+        image: "images/Lilies2.jpg"
+      },
+      {
+        id: 4,
+        name: "Peach Blossom Garden ",
+        category: "Bouquets",
+        price: 2599,
+        badge: "New",
+        description: " Peach Blossom Garden Mixed Flower Bouquet.",
+        image: "images/Bouquet2.jpg"
+      },
+      {
+        id: 5,
+        name: " Romantic Blue Rose ",
+        category: "Roses",
+        price: 2999,
+        badge: "Premium",
+        description: "A thoughtful floral gift for someone special.",
+        image: "images/rose5.jpg"
+      },
+      {
+        id: 6,
+        name: " The Enchanted Garden Flower Basket ",
+        category: "Bouquets",
+        price: 2899,
+        badge: "Premium",
+        description: " Enchanted Garden Luxury Mixed Flower Basket.",
+        image: "images/Bouquet3.jpg"
+      },
+      {
+        id: 7,
+        name: " Mixed Flower Bouquet ",
+        category: "Gifts",
+        price: 1899,
+        badge: "Premium",
+        description: "Elegant bouquet of roses and peonies.",
+        image: "images/Flower03.jpg"
+      },
+      {
+        id: 8,
+        name: "Blush Red Roses",
+        category: "Roses",
+        price: 1199,
+        badge: "Favourite",
+        description: "Delicate pink roses with a soft, elegant look.",
+        image:"images/rose6.jpg"
+       },
+       {
+        id: 9,
+        name: "Blush Pink Roses",
+        category: "Roses",
+        price: 1199,
+        badge: "",
+        description: "Delicate pink roses with a soft, elegant look.",
+        image:"images/rose4.jpg"
+       },
+       {
+        id: 10,
+        name: "Garden Fresh Flowers",
+        category: "Bouquets",
+        price: 999,
+        badge: "",
+        description: "A colourful mix inspired by a blooming garden.",
+        image: "images/Bouquet5.jpg"
+      },
+      {
+        id: 11,
+        name: " Blue-Pink Stargazer Lilies ",
+        category: "Lilies",
+        price: 1599,
+        badge: "",
+        description: "Beautiful blue and pink lilies with vibrant petals.",
+        image: "images/Lilies1.jpg"
+      },
+      {
+        id: 12,
+        name: " White Lily ",
+        category: "Lilies",
+        price: 1399,
+        badge: "Favourite",
+        description: "  Elegant white lily with soft petals. ",
+        image: "images/Lilies3.jpg"
+      },
+       {
+        id: 13,
+        name: " Orange Lily ",
+        category: "Lilies",
+        price: 1399,
+        badge: "Premium",
+        description: "Bright orange lily with dark spots. ",
+        image: "images/Lilies4.jpg"
+      },
+      {
+        id: 14,
+        name: "  Vibrant Garden Zinnia ",
+        category: "Gifts",
+        price: 2199,
+        badge: "Favourite",
+        description: " A beautiful, colorful bouquet of zinnia flowers .",
+        image: "images/Flower08.jpg"
+      },
+      {
+        id: 15,
+        name: " Pastel Rose & Hydrangea Bouquet ",
+        category: "Gifts",
+        price: 2599,
+        badge: "",
+        description: "  A beautiful bouquet of creamy white .",
+        image: "images/Flowergirl09.jpg"
+      },
+       {
+        id: 16,
+        name: " White and Green Rose ",
+        category: "Gifts",
+        price: 2999,
+        badge: "",
+        description: "  A beautiful arrangement of white and light green roses  .",
+        image: "images/Flowergirl01.jpg"
+      }
+    ];
+
+    let selectedCategory = "All";
+
+    let cart = JSON.parse(localStorage.getItem("FLORAPIXEL_cart") || "[]");
+
+    let wishlist = JSON.parse(
+      localStorage.getItem("flower43_wishlist") || "[]"
+    );
+
+    const productGrid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+    const resultCount = document.getElementById("resultCount");
+    const cartCount = document.getElementById("cartCount");
+
+    const money = amount =>
+      new Intl.NumberFormat("en-IN", {
+        style: "currency",
+        currency: "INR",
+        maximumFractionDigits: 0
+      }).format(amount);
+
+    function renderProducts() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+
+      let filtered = products.filter(product => {
+        const matchesCategory =
+          selectedCategory === "All" ||
+          product.category === selectedCategory;
+
+        const matchesSearch =
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.category.toLowerCase().includes(searchTerm);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      if (sortSelect.value === "low") {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortSelect.value === "high") {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortSelect.value === "name") {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      resultCount.textContent =
+        `Showing ${filtered.length} of ${products.length} products`;
+
+      if (filtered.length === 0) {
+        productGrid.innerHTML = `
+          <div class="empty">
+            <h3>No flowers found 🌸</h3>
+            <p>Try another search or choose a different category.</p>
+          </div>
+        `;
+        return;
+      }
+
+      productGrid.innerHTML = filtered.map(product => `
+        <article class="product-card">
+          <div class="image-wrap">
+            <img
+              class="product-image"
+              src="${product.image}"
+              alt="${product.name}"
+              loading="lazy"
+            >
+
+            ${product.badge
+              ? `<span class="badge">${product.badge}</span>`
+              : ""}
+
+            <button
+              class="wishlist ${wishlist.includes(product.id) ? "active" : ""}"
+              onclick="toggleWishlist(${product.id})"
+              aria-label="Toggle wishlist for ${product.name}"
+              aria-pressed="${wishlist.includes(product.id)}"
+            >${wishlist.includes(product.id) ? "♥" : "♡"}</button>
+          </div>
+
+          <div class="product-info">
+            <span class="product-category">${product.category}</span>
+            <h3>${product.name}</h3>
+            <p class="description">${product.description}</p>
+
+            <div class="product-bottom">
+              <span class="price">${money(product.price)}</span>
+
+              <button
+                class="add-cart"
+                onclick="addToCart(${product.id})"
+              > Purchase  </button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function updateCartCount() {
+      const totalItems = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+
+      cartCount.textContent = totalItems;
+    }
+
+    function addToCart(id) {
+      const existing = cart.find(item => item.id === id);
+
+      if (existing) {
+        existing.quantity++;
+      } else {
+        cart.push({ id, quantity: 1 });
+      }
+
+      localStorage.setItem("flower43_cart", JSON.stringify(cart));
+      updateCartCount();
+
+      const product = products.find(item => item.id === id);
+      alert(`${product.name} added to your cart! 🌸`);
+    }
+
+    function toggleWishlist(id) {
+      if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(item => item !== id);
+      } else {
+        wishlist.push(id);
+      }
+
+      localStorage.setItem(
+        "flower43_wishlist",
+        JSON.stringify(wishlist)
+      );
+
+      renderProducts();
+    }
+
+    document.querySelectorAll(".category-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        document.querySelectorAll(".category-btn").forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        selectedCategory = button.dataset.category;
+        renderProducts();
+      });
+    });
+
+    searchInput.addEventListener("input", renderProducts);
+    sortSelect.addEventListener("change", renderProducts);
+
+    document.getElementById("cartButton").addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Your cart is empty. Explore our beautiful flowers! 🌷");
+        return;
+      }
+
+      const lines = cart.map(item => {
+        const product = products.find(p => p.id === item.id);
+        return `${product.name} × ${item.quantity} = ${money(product.price * item.quantity)}`;
+      });
+
+      const total = cart.reduce((sum, item) => {
+        const product = products.find(p => p.id === item.id);
+        return sum + product.price * item.quantity;
+      }, 0);
+
+      alert(
+        "YOUR FLOWER43 CART\n\n" +
+        lines.join("\n") +
+        "\n\nTotal: " + money(total) +
+        "\n\nNote: Checkout and payment are not connected yet."
+      );
+    });
+
+    document.getElementById("newsletterForm").addEventListener(
+      "submit",
+      event => {
+        event.preventDefault();
+        alert("Thank you for subscribing to Flower43! 🌸");
+        event.target.reset();
+      }
+    );
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    updateCartCount();
+    renderProducts();
+  </script>
+
+</body>
+</html>
