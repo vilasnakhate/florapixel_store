@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Flora Pixel Store</title>
+
+     
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #245b43;
+            --dark: #193b2c;
+            --light: #f5f7f0;
+            --cream: #fffdf7;
+            --text: #4d5b51;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        
+        /* NAVBAR */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 22px 8%;
+    background: #fffdf7;
+    border-bottom: 1px solid #e8ede5;
+    flex-wrap: wrap;
+}
+
+/* NAV LINKS */
+.navbar a {
+    color: #34483b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.navbar a:hover {
+    color: #c77d49;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+    .navbar {
+        gap: 16px;
+        padding: 18px 12px;
+    }
+
+    .navbar a {
+        font-size: 12px;
+    }
+}
+
+        /* HERO */
+        .hero {
+            min-height: 390px;
+            padding: 85px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    #e5edda 0,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    #f3dfcb 0,
+                    transparent 28%
+                ),
+                #f5f7f0;
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--green);
+            background: #e4eddf;
+            padding: 7px 17px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #bc8053;
+            font-style: italic;
+        }
+
+        .hero p {
+            max-width: 620px;
+            margin: auto;
+            color: var(--text);
+            font-size: 16px;
+        }
+
+        /* COMMON */
+        .section {
+            padding: 85px 8%;
+        }
+
+        .section-heading {
+            font-size: clamp(30px, 4vw, 43px);
+            margin-bottom: 20px;
+        }
+
+        .section-text {
+            color: var(--text);
+            font-size: 15px;
+        }
+
+        /* OUR STORY */
+        .story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 65px;
+            align-items: center;
+        }
+
+        .story-visual {
+            min-height: 390px;
+            border-radius: 24px;
+            background: linear-gradient(
+                140deg,
+                #dfe9d7,
+                #f4e4d2
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 35px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .story-visual::before,
+        .story-visual::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(36, 91, 67, 0.2);
+            border-radius: 50%;
+        }
+
+        .story-visual::before {
+            width: 260px;
+            height: 260px;
+        }
+
+        .story-visual::after {
+            width: 330px;
+            height: 330px;
+        }
+
+        .visual-card {
+            background: rgba(255, 253, 247, 0.92);
+            padding: 38px 25px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 290px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 15px 45px #193b2c12;
+        }
+
+        .visual-icon {
+            font-size: 55px;
+            margin-bottom: 12px;
+        }
+
+        .visual-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .visual-card p {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .story-content .section-text {
+            margin-bottom: 17px;
+        }
+
+        .story-content .eyebrow {
+            margin-bottom: 18px;
+        }
+
+        .text-link {
+            display: inline-block;
+            margin-top: 15px;
+            background: var(--green);
+            color: white;
+            padding: 13px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .text-link:hover {
+            background: #193b2c;
+            transform: translateY(-2px);
+        }
+
+        /* MISSION & VISION */
+        .values {
+            background: var(--light);
+            text-align: center;
+        }
+
+        .values-intro {
+            max-width: 650px;
+            margin: 0 auto 42px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: #fffdf7;
+            border: 1px solid #e7ece2;
+            padding: 35px 25px;
+            border-radius: 18px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px #193b2c0c;
+        }
+
+        .value-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 15px;
+            background: #e8efe2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            margin-bottom: 22px;
+        }
+
+        .value-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        /* WHY CHOOSE US */
+        .choose {
+            text-align: center;
+        }
+
+        .choose-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 45px;
+        }
+
+        .choose-item {
+            padding: 15px;
+        }
+
+        .choose-item .choose-icon {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .choose-item h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .choose-item p {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        /* CTA */
+        .cta {
+            margin: 0 8% 85px;
+            padding: 65px 25px;
+            text-align: center;
+            border-radius: 25px;
+            background: var(--green);
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: clamp(30px, 4vw, 42px);
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #e0eadf;
+            margin-bottom: 27px;
+            font-size: 15px;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: #fffdf7;
+            color: var(--green);
+            padding: 13px 28px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            background: #f1dfcb;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 28px 8%;
+            background: #f5f7f0;
+            border-top: 1px solid #e6ebe2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .footer a {
+            color: var(--green);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .story {
+                gap: 35px;
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .choose-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 18px 5%;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .nav-links .nav-btn {
+                padding: 8px 13px;
+            }
+
+            .hero {
+                min-height: 330px;
+                padding: 65px 6%;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 60px 6%;
+            }
+
+            .story {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .story-visual {
+                min-height: 310px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-card {
+                padding: 28px 22px;
+            }
+
+            .choose-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .choose-item {
+                padding: 10px 5px;
+            }
+
+            .cta {
+                margin: 0 5% 55px;
+                padding: 45px 20px;
+            }
+
+            .footer {
+                padding: 24px 6%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            Flora<span>Pixel.</span>
+        </a>
+
+         <nav class="navbar">
+            <a href="index.html">HOME</a>
+            <a href="products.html">PRODUCTS</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">Get to know us</span>
+
+            <h1>
+                A Little About <span>Flora Pixel</span>
+            </h1>
+
+            <p>
+                Welcome to Flora Pixel Store, a place where creativity
+                meets thoughtful design. We believe that great products
+                should inspire you, bring joy, and make every experience
+                a little more special.
+            </p>
+        </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section class="section story">
+        <div class="story-visual">
+            <div class="visual-card">
+                <div class="visual-icon">✿</div>
+                <h3>Made with Creativity</h3>
+                <p>
+                    Thoughtful ideas, fresh inspiration, and a passion
+                    for creating something special.
+                </p>
+            </div>
+        </div>
+
+        <div class="story-content">
+            <span class="eyebrow">Our Story</span>
+
+            <h2 class="section-heading">
+                More Than Just a Store
+            </h2>
+
+            <p class="section-text">
+                Flora Pixel Store was created with a simple idea:
+                make discovering beautiful and creative products
+                an enjoyable experience for everyone.
+            </p>
+
+            <p class="section-text">
+                We care about the details, value our customers, and
+                believe that even small things can make a meaningful
+                difference. Our goal is to bring inspiration, quality,
+                and convenience together in one place.
+            </p>
+
+            <p class="section-text">
+                Whether you are exploring something new or looking
+                for something that matches your style, we want your
+                journey with Flora Pixel to feel simple and special.
+            </p>
+
+            <a href="index.html" class="text-link">
+                Explore Our Store →
+            </a>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section values">
+        <div class="values-intro">
+            <span class="eyebrow">What We Believe</span>
+
+            <h2 class="section-heading">
+                Our Mission & Values
+            </h2>
+
+            <p class="section-text">
+                The ideas that guide us and the promises we aim to
+                deliver through every customer experience.
+            </p>
+        </div>
+
+        <div class="values-grid">
+
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p>
+                    To make discovering and shopping for creative
+                    products simple, enjoyable, and accessible while
+                    putting our customers first.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">🌱</div>
+                <h3>Our Vision</h3>
+                <p>
+                    To grow into a trusted destination where people
+                    discover fresh ideas, inspiring products, and
+                    experiences they love.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">💚</div>
+                <h3>Our Promise</h3>
+                <p>
+                    To focus on thoughtful choices, clear communication,
+                    and a welcoming shopping experience at every step.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section choose">
+        <span class="eyebrow">The Flora Pixel Difference</span>
+
+        <h2 class="section-heading">
+            Why Choose Flora Pixel?
+        </h2>
+
+        <p class="section-text">
+            We want every visit to be easy, enjoyable, and worth
+            coming back for.
+        </p>
+
+        <div class="choose-grid">
+
+            <div class="choose-item">
+                <div class="choose-icon">✨</div>
+                <h3>Creative Selection</h3>
+                <p>
+                    Discover products and ideas chosen with creativity
+                    and attention to detail.
+                </p>
+            </div>
+
+            <div class="choose-item">
+                <div class="choose-icon">🛍️</div>
+                <h3>Easy Shopping</h3>
+                <p>
+                    Enjoy a straightforward browsing experience
+                    designed around your convenience.
+                </p>
+            </div>
+
+            <div class="choose-item">
+                <div class="choose-icon">🤝</div>
+                <h3>Customer First</h3>
+                <p>
+                    We value your feedback and aim to make your
+                    experience a positive one.
+                </p>
+            </div>
+
+            <div class="choose-item">
+                <div class="choose-icon">💡</div>
+                <h3>Fresh Inspiration</h3>
+                <p>
+                    Find new ideas and explore products that
+                    spark your imagination.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta">
+        <h2>Ready to Explore?</h2>
+
+        <p>
+            Discover Flora Pixel Store and find something that
+            inspires you.
+        </p>
+
+        <a href="products.html" class="cta-btn">
+            Start Exploring →
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="index.html" class="logo">
+            Flora<span>Pixel.</span>
+        </a>
+
+        <p>
+            © 2026 Flora Pixel Store. All rights reserved.
+        </p>
+
+        <a href="contact.html">Get in Touch</a>
+    </footer>
+
+</body>
+</html>
